@@ -5,13 +5,12 @@ class Room
       @name = name
       @description = description
       @exits = {}
-      @inventory = []
     end
   end
 
-class Game 
+class Game < Room
 
-    def initialize
+    def initialize 
       @rooms = {}
       @current_room = nil
     end
@@ -36,8 +35,6 @@ class Game
         case input
         when "help"
             display_help
-        when "inventory"
-            show_inventory
         when "quit"
           puts "Thanks for playing!"
           break
@@ -55,15 +52,6 @@ class Game
         puts "What would you like to do? (Type 'help' for instructions.)"
         print "> "
       end
-
-    def show_inventory
-        if @inventory.empty?
-          puts "Your inventory is empty."
-        else
-          puts "Your inventory:"
-          @inventory.each { |item| puts "- #{item}" }
-        end
-    end
 
     def display_help
         puts "Instructions:"
@@ -85,13 +73,12 @@ class Game
         case room.name
         when "Room 1"
           puts "The power just cut off and you hear a noise coming from the fridge..."
-          if @inventory.include?("knife")
+          if 
             puts "You already took the knife from the fridge."
           else
             puts "You found a knife in the fridge! You pick it up and put it in your inventory."
-            @inventory << "knife"
           end
-        end
+        end 
     end
 
   end
